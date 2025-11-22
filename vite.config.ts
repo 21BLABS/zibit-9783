@@ -20,6 +20,15 @@ export default defineConfig(() => {
 
   return {
     base: basePath,
+    server: {
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3001',
+          changeOrigin: true,
+          secure: false,
+        },
+      },
+    },
     ssr: {
       noExternal,
       external: ["@privy-io/cross-app-connect/rainbow-kit"],
